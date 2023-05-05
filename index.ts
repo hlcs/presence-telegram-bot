@@ -113,7 +113,7 @@ bot.on(UpdateType.Message, async ({ message }) => {
     let lastState;
     
     try {
-    let lastState = await db.query(
+    lastState = await db.query(
       "SELECT status FROM logs ORDER BY id DESC LIMIT 1"
     )[0][0];
     }
