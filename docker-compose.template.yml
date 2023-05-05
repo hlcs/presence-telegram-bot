@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  hlcs_presence:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes: 
+     - ./db:/app/db/
+    environment:
+      - TOKEN_TELEGRAM=
+      - POLLING_INTERVAL=60000 
+      - HISTORY_INTERVAL=300000 #5 minuti
+      - GET_LAB_STATE_ENDPOINT=
+      - GET_LAB_HISTORY_ENDPOINT=
