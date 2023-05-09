@@ -6,4 +6,3 @@ COPY src ./src
 RUN mkdir db
 RUN deno cache index.ts
 CMD ["deno","run", "--allow-net", "--allow-read", "--allow-env", "--allow-write","index.ts"]
- 
