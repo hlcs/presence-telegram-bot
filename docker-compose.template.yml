@@ -13,4 +13,5 @@ services:
       - HISTORY_INTERVAL=300000 #5 minuti
       - GET_LAB_STATE_ENDPOINT=
       - GET_LAB_HISTORY_ENDPOINT=
+      - TIMEZONE_OFFSET=+01:00
     restart: unless-stopped

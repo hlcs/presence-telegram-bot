@@ -4,12 +4,14 @@ export function get_env() {
   const GET_LAB_STATE_ENDPOINT = Deno.env.get("GET_LAB_STATE_ENDPOINT");
   const GET_LAB_HISTORY_ENDPOINT = Deno.env.get("GET_LAB_HISTORY_ENDPOINT");
   const HISTORY_INTERVAL = Deno.env.get("HISTORY_INTERVAL");
+  const TIMEZONE_OFFSET = Deno.env.get("TIMEZONE_OFFSET");
   console.log(
     "keys",
     TOKEN_TELEGRAM,
     POLLING_INTERVAL,
     GET_LAB_STATE_ENDPOINT,
-    GET_LAB_HISTORY_ENDPOINT
+    GET_LAB_HISTORY_ENDPOINT,
+    TIMEZONE_OFFSET
   );
   if (!TOKEN_TELEGRAM) throw new Error("Bot token is not provided");
   if (!POLLING_INTERVAL) throw new Error("Polling interval is not provided");
@@ -25,5 +27,6 @@ export function get_env() {
     GET_LAB_STATE_ENDPOINT,
     GET_LAB_HISTORY_ENDPOINT,
     HISTORY_INTERVAL:parseInt(HISTORY_INTERVAL),
+    TIMEZONE_OFFSET
   };
 }

@@ -17,4 +17,5 @@ and set the env vars:
 
 - GET_LAB_HISTORY_ENDPOINT
 
+- TIMEZONE_OFFSET default +01:00 (Italy)
 and for start it run the command docker-compose up -d 

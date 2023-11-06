@@ -8,6 +8,13 @@ import {
 import { get_db } from "./src/db.ts";
 import { get_env } from "./src/env.ts";
 import { ResponseLab } from "./src/interface.ts";
+
+
+
+
+
+
+
 const env = get_env();
 const db = get_db();
 function generataRisposta(id: number, nome?: string): string {
@@ -15,13 +22,13 @@ function generataRisposta(id: number, nome?: string): string {
   const formattedDate = date;
   if (id == 1 && nome != undefined)
     return (
-      "Il laboratorio è stato aperto alle " + formattedDate + " da " + nome
+      "Il laboratorio è stato aperto " + formattedDate + " da " + nome
     );
   else if (id === 1)
     return (
-      "Il laboratorio è stato aperto alle " + formattedDate + " con la chiave"
+      "Il laboratorio è stato aperto " + formattedDate + " con la chiave"
     );
-  else return "Il laboratorio è stato chiuso alle " + formattedDate;
+  else return "Il laboratorio è stato chiuso " + formattedDate;
 }
 
 const getCurrentLabState = async () => {
@@ -43,9 +50,8 @@ const getCurrentLabState = async () => {
       const jsonFetchApetureOnline = await rawFetchApetureOnline.json();
       let nome = undefined;
       const dataAttuale = new Date() as any;
-      dataAttuale.setHours(dataAttuale.getHours() + 2);
-      const dataApetura = new Date(jsonFetchApetureOnline[0].time) as any;
-      if (dataAttuale - dataApetura < env.HISTORY_INTERVAL) {
+      const dataApetura = new Date(jsonFetchApetureOnline[0].time+env.TIMEZONE_OFFSET) as any;
+      if ((dataAttuale - dataApetura) < env.HISTORY_INTERVAL) {
         nome = jsonFetchApetureOnline[0].user;
       }
       //console.log(nome);
