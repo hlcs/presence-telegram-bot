@@ -5,6 +5,7 @@ export function get_env() {
   const GET_LAB_HISTORY_ENDPOINT = Deno.env.get("GET_LAB_HISTORY_ENDPOINT");
   const HISTORY_INTERVAL = Deno.env.get("HISTORY_INTERVAL");
   const TIMEZONE_OFFSET = Deno.env.get("TIMEZONE_OFFSET");
+  const DEBUG = Deno.env.get("DEBUG");
   console.log(
     "keys",
     TOKEN_TELEGRAM,
@@ -27,6 +28,7 @@ export function get_env() {
     GET_LAB_STATE_ENDPOINT,
     GET_LAB_HISTORY_ENDPOINT,
     HISTORY_INTERVAL:parseInt(HISTORY_INTERVAL),
-    TIMEZONE_OFFSET
+    TIMEZONE_OFFSET,
+    DEBUG
   };
 }

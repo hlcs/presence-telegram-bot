@@ -80,9 +80,12 @@ bot.on(UpdateType.Message, async ({ message }) => {
     let lastState;
 
     try {
+      if(env.DEBUG){console.log("Inizio recupero logs nel db");}
       lastState = await db.query(
         "SELECT status FROM logs ORDER BY id DESC LIMIT 1"
       )[0][0];
+      if(env.DEBUG){console.log("Fine recupero logs nel db");}
+
     } catch (_) {}
     const stringaStato =
       lastState === 1
@@ -91,22 +94,35 @@ bot.on(UpdateType.Message, async ({ message }) => {
     console.log("start");
     console.log(message!.from!.id);
     try {
+      if(env.DEBUG){console.log("Inizio insert utente nel db");}
       db.query("INSERT INTO users (telegram_id) VALUES (?)", [
         message!.from!.id,
       ]);
+      if(env.DEBUG){console.log("Fine insert utente nel db");}
+
+      if(env.DEBUG){console.log("Inizio invio messaggio");}
       bot.sendMessage({
         chat_id: message.chat.id,
         text:
           "Ciao, sono il bot HLCS. Ti avviserò quando il laboratorio sarà aperto o chiuso. \n" +
           stringaStato,
       });
+      if(env.DEBUG){
+        console.log("Fine invio messaggio");
+      }
     } catch (_) {
+      if(env.DEBUG){
+        console.log("Inizio invio messaggio");
+      }
       bot.sendMessage({
         chat_id: message.chat.id,
         text:
           "Ciao, sono il bot HLCS. Ti avviserò quando il laboratorio sarà aperto o chiuso, ti notifico che eri già iscritto \n" +
           stringaStato,
       });
+      if(env.DEBUG){
+        console.log("Fine invio messaggio");
+      }
     }
   }
 });
